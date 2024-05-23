@@ -1,5 +1,4 @@
 "use client"
-import MYModal from "@/components/Modals/MYModal";
 import { Box, Button, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import TravelPostModal from "./components/TravelPostModal";

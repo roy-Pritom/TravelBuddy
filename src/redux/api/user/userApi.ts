@@ -15,9 +15,18 @@ export const userApi = baseApi.injectEndpoints({
       },
       providesTags:[TagTypes.user]
     }),
+    getAllUser: builder.query({
+      query: () => {
+        return {
+           url:"/users",
+           method:"GET"
+        }
+      },
+      providesTags:[TagTypes.user]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUserProfileQuery } = userApi
+export const { useGetUserProfileQuery,useGetAllUserQuery } = userApi
