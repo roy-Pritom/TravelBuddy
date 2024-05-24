@@ -12,9 +12,9 @@ const UserPage = () => {
     const { data: user, isLoading } = useGetUserProfileQuery({});
     //   console.log(user);
     const { data: taskData } = useGetTravelRequestsByUserQuery({});
-    console.log(taskData);
+    // console.log(taskData);
     const { data: trips } = useGetTripByUserQuery({});
-    console.log(trips);
+    // console.log(trips);
     return (
         <div className="">
             {

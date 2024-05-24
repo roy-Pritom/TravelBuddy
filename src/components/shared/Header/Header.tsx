@@ -9,6 +9,7 @@ const Header = () => {
     const NavBarItems = <>
         <li><Link href='/'>Home</Link></li>
         <li><Link href='/about'>About Us</Link></li>
+        <li><Link href='/dashboard'>About Us</Link></li>
     </>
     return (
         <Container>

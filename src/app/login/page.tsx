@@ -7,7 +7,6 @@ import { TUser } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { FieldValues} from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -19,33 +18,36 @@ const loginValidationSchema=z.object({
 })
 
 const LoginPage = () => {
-   const router=useRouter();
+    const router=useRouter();
    const user=getUserInfo() as TUser;
-   const [role,setRole]=useState('');
+//    const [role,setRole]=useState('');
 
-   useEffect(()=>{
-    if (user?.role) {
-        setRole(user.role);
-      }         
-   },[user?.role])
+//    useEffect(()=>{
+//     if (user?.role) {
+//         setRole(user.role);
+//       }         
+//    },[user?.role])
 
     const handleLogin=async(values:FieldValues)=>{
+
         const toastId = toast.loading('processing...')
 
         try{
+         
          const res=await loginUser(values);
-         console.log(res);
+        //  console.log(res);
          if (res?.success === true) {
             toast.success('User login successfully!!!', { id: toastId, duration: 1000 })
             storeUserInfo(res?.data?.accessToken)
             // Update the role immediately
-            if (res?.data?.role) { 
-                setRole(res.data.role); 
-              }
+            // if (res?.data?.role) { 
+            //     setRole(res.data.role); 
+            //   }
             //    console.log(role);
             // if(role){
-
-            //     router.push(`/dashboard/${role}`)
+ 
+                router.push('/dashboard')
+                // router.refresh()
             // }
       
         }
@@ -60,11 +62,11 @@ const LoginPage = () => {
 
         }
     }
-    useEffect(() => {
-        if (role) {
-          router.push(`/dashboard/${role}`);
-        }
-      }, [role, router]);
+    // useEffect(() => {
+    //     if (role) {
+    //       router.push(`/dashboard/${role}`);
+    //     }
+    //   }, [role, router]);
     return (
            <div>
                    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

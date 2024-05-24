@@ -8,6 +8,9 @@ import React from "react";
 import { AuthKey } from "@/constants";
 
 const AccountMenuItem = () => {
+
+
+
     const router=useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -28,6 +31,7 @@ const AccountMenuItem = () => {
         // handleMobileMenuClose();
     };
     const handleLogOut=()=>{
+     
         setAnchorEl(null);
         localStorage.removeItem(AuthKey);
         router.push('/login')

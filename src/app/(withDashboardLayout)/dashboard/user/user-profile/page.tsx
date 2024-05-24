@@ -4,14 +4,27 @@ import { useState } from "react";
 import EditProfileModal from "./components/EditProfileModal";
 import { useGetUserProfileQuery } from "@/redux/api/user/userApi";
 import LockResetIcon from '@mui/icons-material/LockReset';
+import { useGetTravelRequestsByUserQuery } from "@/redux/api/user/travelApi";
+import { useGetTripByUserQuery } from "@/redux/api/user/tripApi";
 
 const UserProfilePage = () => {
     const [open, setOpen] = useState<boolean>(false);
     const { data: userProfileData, isLoading } = useGetUserProfileQuery({});
+    const { data: taskData } = useGetTravelRequestsByUserQuery({});
+    const { data: trips } = useGetTripByUserQuery({});
+
+
     // console.log(userProfileData);
     return (
 
-        <main className="profile-page ">
+        <div className="">
+            {
+                isLoading ? (
+                    <span className="loading loading-spinner loading-md"></span>
+
+                )  :
+                (
+                    <main className="profile-page ">
             <section className="relative block h-[500px] ">
                 <div className="absolute top-0 w-full h-full bg-center bg-cover"
                     style={{
@@ -36,7 +49,7 @@ const UserProfilePage = () => {
                             <div className="flex flex-wrap justify-center">
                                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                     <div className="relative">
-                                        <Image alt="profilePhoto" src={userProfileData?.profilePhoto ? userProfileData?.profilePhoto : ""} className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[115px]" width={160} height={160} />
+                                        <Image alt="profilePhoto" src={userProfileData?.profilePhoto ? userProfileData?.profilePhoto : "https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png"} className="shadow-xl rounded-full  align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[115px]" width={200} height={100} />
                                     </div>
                                 </div>
                                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -50,10 +63,10 @@ const UserProfilePage = () => {
                                 <div className="w-full lg:w-4/12 px-4 lg:order-1">
                                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                         <div className="mr-4 p-3 text-center">
-                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span className="text-sm text-blueGray-400">Friends</span>
+                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{trips?.length}</span><span className="text-sm text-blueGray-400">Posts</span>
                                         </div>
                                         <div className="mr-4 p-3 text-center">
-                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span><span className="text-sm text-blueGray-400">Photos</span>
+                                            <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{taskData?.length}</span><span className="text-sm text-blueGray-400">Requests</span>
                                         </div>
                                         <div className="lg:mr-4 p-3 text-center">
                                             <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{userProfileData?.age}</span><span className="text-sm text-blueGray-400">Age</span>
@@ -96,6 +109,9 @@ const UserProfilePage = () => {
                 </footer>
             </section>
         </main>
+                )
+            }
+        </div>
 
     );
 };
