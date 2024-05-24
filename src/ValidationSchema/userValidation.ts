@@ -13,6 +13,7 @@ export const UserValidation=z.object({
     name:z.string().nonempty({message:"name is required"}).optional(),
     email:z.string().email().nonempty({message:"email is required"}).optional(),
     bio:z.string().nonempty({message:"bio is required"}).optional(),
-    age:z.string().nonempty({message:"age is required"}).optional(),
-    file:FileSchema.optional()
+    age:z.number().optional(),
+    file:FileSchema.optional(),
+    location:z.string().optional()
 })

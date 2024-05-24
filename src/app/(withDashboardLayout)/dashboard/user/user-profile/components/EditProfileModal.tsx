@@ -3,7 +3,7 @@ import MYFileUploader from "@/components/Forms/MYFileUploader";
 import MYInput from "@/components/Forms/MYInput";
 import MyForm from "@/components/Forms/MyForm";
 import MYModal from "@/components/Modals/MYModal";
-import { useGetUserProfileQuery } from "@/redux/api/user/userApi";
+import { useGetUserProfileQuery, useUpdateUserProfileMutation } from "@/redux/api/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Grid } from "@mui/material";
 import { FieldValues } from "react-hook-form";
@@ -18,15 +18,18 @@ type TProps = {
  
 const EditProfileModal = ({ open, setOpen }: TProps) => {
     const {data:userProfileData,isLoading}=useGetUserProfileQuery({});
-    console.log(userProfileData);
+    // console.log(userProfileData);
+    const [updateUserProfile]=useUpdateUserProfileMutation();
     const defaultValues={
         name:userProfileData?.user?.name || "",
         email:userProfileData?.user?.email || "",
         bio:userProfileData?.bio || "",
         age:userProfileData?.age || "",
+        location:userProfileData?.location || "",
+        profilePhoto:userProfileData?.profilePhoto || ""
     }
     const handleSubmit = async (values: FieldValues) => {
-        // const toastId=toast.loading("Processing...")
+        const toastId=toast.loading("Processing...")
         const formData = new FormData();
         formData.append('image', values?.file as File)
         let imgData;
@@ -43,28 +46,33 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
         values.age=Number(values?.age)
         // console.log(values);
         const userData={
-           ...values,
+           name:values?.name,
+           email:values?.email,
+           age:values?.age,
+           bio:values?.bio,
+           location:values?.location,
+           profileDescription:values?.profileDescription,
            profilePhoto:imgData?.data?.url
         }
         console.log(userData);
-        // try{
-        //    const res:any=await createTrip(tripData);
-        //    // console.log(res);
-        //    if(res?.data?.id){
-        //          toast.success("Trip created successfully",{id:toastId,duration:1000});
-        //          setOpen(false);
-        //    }
-        //    else{
-        //       toast.error("Something went wrong",{id:toastId,duration:1000});
-        //    }
-        // }
-        // catch(error:any){
-        //    console.log(error?.message);
-        // }
+        try{
+           const res=await updateUserProfile(userData);
+           console.log(res);
+           if(res?.data?.id){
+                 toast.success("Profile updated successfully",{id:toastId,duration:1000});
+                 setOpen(false);
+           }
+           else{
+              toast.error("Something went wrong",{id:toastId,duration:1000});
+           }
+        }
+        catch(error:any){
+           console.log(error?.message);
+        }
      }
     return (
       <MYModal open={open} setOpen={setOpen} title="Edit Your Profile" >
-               <MyForm onSubmit={handleSubmit} resolver={zodResolver(UserValidation)} defaultValues={userProfileData && defaultValues} >
+               <MyForm onSubmit={handleSubmit}  defaultValues={userProfileData && defaultValues} >
             <Grid container spacing={2} sx={{ width: '400px' }}>
                <Grid item md={6}>
                   <MYInput name="name" label="Name" />
@@ -74,10 +82,16 @@ const EditProfileModal = ({ open, setOpen }: TProps) => {
                </Grid>
            
                <Grid item md={6}>
-                  <MYInput name="Bio" label="Bio" />
+                  <MYInput name="bio" label="Bio" />
                </Grid>
                <Grid item md={6}>
                   <MYInput name="age" label="Age" type="number"/>
+               </Grid>
+               <Grid item md={6}>
+                  <MYInput name="location" label="Location" />
+               </Grid>
+               <Grid item md={6}>
+                  <MYInput name="profileDescription" label="Description" />
                </Grid>
                <Grid item md={6}>
                   <MYFileUploader name="file" label="Upload Photo" sx={{ width: "100%" }} />

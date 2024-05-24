@@ -7,7 +7,7 @@ import { baseApi } from '../baseApe'
 export const tripApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createTrip: builder.mutation({
-      query: (data) => {
+      query: (data:any) => {
         return {
            url:"/trips",
            method:"POST",
