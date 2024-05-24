@@ -21,7 +21,7 @@ const SideBar = () => {
   
 //    console.log(userRole);
     return (
-        <Box>
+        <Box  sx={{backgroundColor:"#FFFFFF",height:"100%"}}>
             <Stack direction="row" justifyContent="center" alignItems="center" gap="5px" sx={{py:1,my:1}} component={Link} href='/'>
                 {/* <Box>
                     <Image src={assets.svgs.logo} width={40} height={40} alt='logo'/>

@@ -1,5 +1,5 @@
 import { IDrawerItem } from "@/types";
-import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,15 +12,19 @@ const SidebarItem = ({item}:{item:IDrawerItem}) => {
         <Link href={linkPath}>
            <ListItem  disablePadding
            sx={{
-            ...(pathName===linkPath ? {borderRight:"3px solid black",backgroundColor:"#29CD9C", "& svg":{color:"#1586FD"}}:{})
+            ...(pathName===linkPath ? {borderRight:"3px solid black",backgroundColor:"primary.main",borderRadius:"10px",marginLeft:"10px",marginRight:"10px",fontWeight:"bold", "& svg":{color:"#1586FD"}}:{})
            }}
            >
-                        <ListItemButton>
+                        <ListItemButton >
                             <ListItemIcon>
                                 {item.icon && <item.icon/>}
                             </ListItemIcon>
                             <ListItemText 
-                        primary={item.title} 
+                        primary={
+                            <Typography sx={{ color: 'black', fontWeight: 'bold' }}>
+                            {item.title}
+                          </Typography>
+                        } 
                         
                     />
                         </ListItemButton>

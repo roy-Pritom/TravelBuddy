@@ -42,7 +42,7 @@ export default function DashboardDrawer({ children }: { children: React.ReactNod
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} >
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -129,10 +129,10 @@ export default function DashboardDrawer({ children }: { children: React.ReactNod
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } , backgroundColor:"#FEFCE8",height:'100vh'}}
             >
                 <Toolbar />
-                <Box>
+                <Box sx={{backgroundColor:"#FFFFFF",padding:4,borderRadius:"10px"}}>
                     {children}
                 </Box>
             </Box>
