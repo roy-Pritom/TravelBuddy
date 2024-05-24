@@ -44,7 +44,7 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                     },
                     {
                         title: "Profile",
-                        path: `${role}/profile`,
+                        path: `${role}/user-profile`,
                         icon: AccountCircleIcon
                     },
                     {
