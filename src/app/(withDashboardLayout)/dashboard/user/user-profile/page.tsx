@@ -8,7 +8,7 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 const UserProfilePage = () => {
     const [open, setOpen] = useState<boolean>(false);
     const { data: userProfileData, isLoading } = useGetUserProfileQuery({});
-    console.log(userProfileData);
+    // console.log(userProfileData);
     return (
 
         <main className="profile-page ">
