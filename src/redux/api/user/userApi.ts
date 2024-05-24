@@ -24,9 +24,18 @@ export const userApi = baseApi.injectEndpoints({
       },
       providesTags:[TagTypes.user]
     }),
+    updateUserProfile: builder.mutation({
+      query: () => {
+        return {
+           url:"/profile",
+           method:"PUT"
+        }
+      },
+      invalidatesTags:[TagTypes.user]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUserProfileQuery,useGetAllUserQuery } = userApi
+export const { useGetUserProfileQuery,useGetAllUserQuery,useUpdateUserProfileMutation } = userApi
