@@ -3,10 +3,11 @@ import Image from "next/image";
 import { useState } from "react";
 import EditProfileModal from "./components/EditProfileModal";
 import { useGetUserProfileQuery } from "@/redux/api/user/userApi";
+import LockResetIcon from '@mui/icons-material/LockReset';
 
 const UserProfilePage = () => {
     const [open, setOpen] = useState<boolean>(false);
-    const {data:userProfileData,isLoading}=useGetUserProfileQuery({});
+    const { data: userProfileData, isLoading } = useGetUserProfileQuery({});
     console.log(userProfileData);
     return (
 
@@ -40,7 +41,8 @@ const UserProfilePage = () => {
                                 </div>
                                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                     <div className="py-6 px-3 mt-32 sm:mt-0">
-                                        <button className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                                        <button className="btn ">
+                                        <LockResetIcon/>
                                             Change Password
                                         </button>
                                     </div>
@@ -60,8 +62,8 @@ const UserProfilePage = () => {
                                 </div>
                             </div>
                             <div className="text-center mt-1 ">
-                    <button onClick={()=>setOpen(true)} className="btn btn-outline mb-3">Edit profile</button>
-                    <EditProfileModal open={open} setOpen={setOpen}/>
+                                <button onClick={() => setOpen(true)} className="btn btn-outline mb-3">Edit profile</button>
+                                <EditProfileModal open={open} setOpen={setOpen} />
                                 <h3 className="text-4xl font-semibold leading-normal  text-blueGray-700 mb-2">
                                     {userProfileData?.user?.name}
                                 </h3>
@@ -80,7 +82,7 @@ const UserProfilePage = () => {
                                 <div className="flex flex-wrap justify-center">
                                     <div className="w-full lg:w-9/12 px-4">
                                         <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                        {userProfileData?.bio}
+                                            {userProfileData?.bio}
                                         </p>
                                         {/* <a href="#pablo" className="font-normal text-pink-500">Show more</a> */}
                                     </div>
@@ -90,7 +92,7 @@ const UserProfilePage = () => {
                     </div>
                 </div>
                 <footer className="relative bg-blueGray-200 pt-8 pb-6 mt-8">
-                
+
                 </footer>
             </section>
         </main>

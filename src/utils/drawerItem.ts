@@ -4,7 +4,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LockResetIcon from '@mui/icons-material/LockReset';
+import HistoryIcon from '@mui/icons-material/History';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 export const drawerItems = (role: UserRole): IDrawerItem[] => {
     const roleMenus: IDrawerItem[] = [];
@@ -48,9 +48,9 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                         icon: AccountCircleIcon
                     },
                     {
-                        title: "Password",
-                        path: `${role}/password`,
-                        icon: LockResetIcon
+                        title: "Request History",
+                        path: `${role}/request-history`,
+                        icon: HistoryIcon
                     },
                     {
                         title: "Reviews",
