@@ -45,7 +45,7 @@ const TravelPostModal = ({ open, setOpen }: TProps) => {
          ...values,
          file:imgData?.data?.url
       }
-      console.log(tripData);
+      // console.log(tripData);
       try{
          const res:any=await createTrip(tripData);
          // console.log(res);
