@@ -87,7 +87,9 @@ useEffect(()=>{
             )
             :
             (
-                <span className="loading loading-spinner loading-md"></span>
+                <div className="flex justify-center items-center">
+                  <span className="loading loading-spinner loading-md"></span>
+                </div>
             )
          }
         </div>

@@ -6,6 +6,8 @@ import RequestPageIcon from '@mui/icons-material/RequestPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HistoryIcon from '@mui/icons-material/History';
 import ReviewsIcon from '@mui/icons-material/Reviews';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import EngineeringIcon from '@mui/icons-material/Engineering';
 export const drawerItems = (role: UserRole): IDrawerItem[] => {
     const roleMenus: IDrawerItem[] = [];
     // console.log(role);
@@ -18,9 +20,14 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                     icon: DashboardIcon
                 },
                 {
-                    title: "user",
-                    path: `${role}/manage-user`,
-                    icon: GroupIcon
+                    title: "Manage Accounts",
+                    path: `${role}/manage-accounts`,
+                    icon: ManageAccountsIcon
+                },
+                {
+                    title: "Trip Management",
+                    path: `${role}/manage-trips`,
+                    icon: EngineeringIcon
                 },
             )
             break;
