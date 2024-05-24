@@ -15,13 +15,14 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SideBar from '../Sidebar/Sidebar';
 import { useGetUserProfileQuery } from '@/redux/api/user/userApi';
 import AccountMenuItem from '../AccountMenuItem/AccountMenuItem';
+import Link from 'next/link';
 // import AccountMenu from '../AccountMenu/AccountMenu';
 
 const drawerWidth = 240;
 
 export default function DashboardDrawer({ children }: { children: React.ReactNode }) {
     const { data: user, isLoading } = useGetUserProfileQuery({});
-    // console.log(user);
+    console.log(user);
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
@@ -81,7 +82,9 @@ export default function DashboardDrawer({ children }: { children: React.ReactNod
                             </IconButton>
                         </Badge>
                           <Tooltip title={user?.user?.name}>
-                          <Avatar  />
+                          <Link href='/dashboard/user/user-profile'>
+                          <Avatar alt='profile'  src={user?.profilePhoto} />
+                          </Link>
                           </Tooltip>
                         <AccountMenuItem/>
                     </Stack>

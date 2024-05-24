@@ -1,4 +1,4 @@
-type Trip = {
+export type Trip = {
     activities: string[];
     budget: number;
     createdAt: string;

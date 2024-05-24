@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const dateFormatter = (value: string) => {
 
     // Create a Date object from the original date string
@@ -12,4 +14,12 @@ export const dateFormatter = (value: string) => {
     const formattedDate = `${year}-${month}-${day}`;
     return formattedDate;
 
+}
+
+export const formattedDate=(dateString:string)=>{
+// Parse the date string with Day.js
+const date = dayjs(dateString);
+// Format the date to "23 April 2024"
+const formattedDate = date.format('DD MMMM YYYY');
+return formattedDate;
 }
