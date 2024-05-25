@@ -36,10 +36,11 @@ export const tripApi = baseApi.injectEndpoints({
       providesTags:[TagTypes.trip]
     }),
     getAllTrips: builder.query({
-      query: () => {
+      query: (args) => {
         return {
            url:"/trips",
            method:"GET",
+           params:args
         }
       },
       providesTags:[TagTypes.trip]

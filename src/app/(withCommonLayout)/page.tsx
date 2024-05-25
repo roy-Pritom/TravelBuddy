@@ -1,8 +1,15 @@
+import Banner from "@/components/UI/Home/Banner";
+import TravelPosts from "@/components/UI/Home/TravelPosts";
 
 export default function HomePage() {
   return (
   <div className="">
-    <h1>Home</h1>
+  <div className="mx-20">
+  <Banner/>
+  </div>
+    <div className="mx-12">
+    <TravelPosts/>
+    </div>
   </div>
   )
 }
