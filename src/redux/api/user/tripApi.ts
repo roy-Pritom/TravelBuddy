@@ -62,9 +62,18 @@ export const tripApi = baseApi.injectEndpoints({
       },
       invalidatesTags:[TagTypes.trip]
     }),
+    getDeletedTrips: builder.query({
+      query: () => {
+        return {
+           url:`/deleted-trips`,
+           method:"GET",
+        }
+      },
+      providesTags:[TagTypes.trip]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCreateTripMutation,useUpdateTripMutation,useGetTripByUserQuery,useGetAllTripsQuery,useGetTripByIdQuery,useDeleteTripMutation} = tripApi
+export const { useCreateTripMutation,useUpdateTripMutation,useGetTripByUserQuery,useGetAllTripsQuery,useGetTripByIdQuery,useDeleteTripMutation, useGetDeletedTripsQuery} = tripApi

@@ -16,9 +16,18 @@ export const travelApi = baseApi.injectEndpoints({
       },
       providesTags:[TagTypes.travel]
     }),
+    getAllTravelBuddyRequests: builder.query({
+      query: () => {
+        return {
+           url:"/buddy-requests",
+           method:"GET",
+        }
+      },
+      providesTags:[TagTypes.travel]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTravelRequestsByUserQuery } = travelApi
+export const { useGetTravelRequestsByUserQuery, useGetAllTravelBuddyRequestsQuery } = travelApi

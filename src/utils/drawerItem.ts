@@ -1,6 +1,5 @@
 import { IDrawerItem, USER_ROLE, UserRole } from "@/types";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupIcon from '@mui/icons-material/Group';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -28,6 +27,11 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                     title: "Trip Management",
                     path: `${role}/manage-trips`,
                     icon: EngineeringIcon
+                },
+                {
+                    title: "Profile",
+                    path: `${role}/admin-profile`,
+                    icon: AccountCircleIcon
                 },
             )
             break;
