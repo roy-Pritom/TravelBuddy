@@ -26,7 +26,7 @@ const Banner = () => {
 
                         <button className={`btn btn-sm hover:text-white hover:bg-black capitalize md:text-sm text-[10px] font-medium text-[#000000] myBtn w-max bg-[#e5e5e5] `}>Strategic SEO Solutions for Maximum Online Visibility &#8211; Achintya</button>
 
-                        {/* <button className={`btn btn-sm hover:text-white hover:bg-black capitalize md:text-sm text-[10px] font-medium text-[#000000] myBtn w-max bg-green-200 `}>Powerful E-commerce Solutions by Achintya Solutions</button> */}
+                  
 
                     </div>
 
@@ -35,7 +35,7 @@ const Banner = () => {
                         <p className="md:text-lg text-sm">Rated at <span className="font-bold">4.9</span> By <span className="font-bold">30000 + </span>Customers Globally</p>
                     </div>
                   <Link href='/register'>
-                  <button className='btn bg-[#29CD9C] text-white my-6 w-[200px] hover:bg-black rounded-full'>GET SIGN UP</button>
+                  <button className='btn bg-[#29CD9C] text-white my-6 w-[200px] hover:bg-black rounded-full'>Share Your Trip</button>
                   </Link>
 
                 </div>
