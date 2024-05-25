@@ -16,6 +16,16 @@ export const tripApi = baseApi.injectEndpoints({
       },
       invalidatesTags:[TagTypes.trip]
     }),
+    updateTrip: builder.mutation({
+      query: (tripData:any) => {
+        return {
+           url:`/update-trip/${tripData.tripId}`,
+           method:"PATCH",
+           data:tripData.data
+        }
+      },
+      invalidatesTags:[TagTypes.trip]
+    }),
     getTripByUser: builder.query({
       query: () => {
         return {
@@ -34,9 +44,27 @@ export const tripApi = baseApi.injectEndpoints({
       },
       providesTags:[TagTypes.trip]
     }),
+    getTripById: builder.query({
+      query: (id:string | undefined) => {
+        return {
+           url:`/trip/${id}`,
+           method:"GET",
+        }
+      },
+      providesTags:[TagTypes.trip]
+    }),
+    deleteTrip: builder.mutation({
+      query: (tripId:string | undefined) => {
+        return {
+           url:`/trip/soft-delete/${tripId}`,
+           method:"DELETE",
+        }
+      },
+      invalidatesTags:[TagTypes.trip]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCreateTripMutation,useGetTripByUserQuery,useGetAllTripsQuery } = tripApi
+export const { useCreateTripMutation,useUpdateTripMutation,useGetTripByUserQuery,useGetAllTripsQuery,useGetTripByIdQuery,useDeleteTripMutation} = tripApi

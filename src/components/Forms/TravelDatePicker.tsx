@@ -21,7 +21,7 @@ const TravelDatePicker = ({name,type='text',label,size='small',fullWidth=true,re
        <Controller
        name={name}
        control={control}
-       defaultValue={dayjs(new Date().toDateString())}
+       defaultValue={dayjs()}
        render={({field:{onChange,value,...field}})=>{
         return (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -30,7 +30,7 @@ const TravelDatePicker = ({name,type='text',label,size='small',fullWidth=true,re
             disablePast
              {...field} 
              onChange={(date)=>onChange(date)}
-             value={value || Date.now()}
+             value={value ? dayjs(value) : null}
              slotProps={{
                 textField:{
                     label:label,
