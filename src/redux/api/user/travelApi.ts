@@ -25,9 +25,38 @@ export const travelApi = baseApi.injectEndpoints({
       },
       providesTags:[TagTypes.travel]
     }),
+    sendTravelBuddyRequest: builder.mutation({
+      query: (data:any) => {
+        return {
+           url:`/trip/${data?.tripId}/request`,
+           method:"POST",
+           data:data.data
+        }
+      },
+      invalidatesTags:[TagTypes.travel]
+    }),
+    getReceiveTravelBuddyRequestsByUser: builder.query({
+      query: () => {
+        return {
+           url:`/receive-buddy-requests`,
+           method:"GET"
+        }
+      },
+      providesTags:[TagTypes.travel]
+    }),
+    responseToBuddyRequest: builder.mutation({
+      query: (data:any) => {
+        return {
+           url:`/travel-buddies/${data.senderId}/respond`,
+           method:"PUT",
+           data:data.data
+        }
+      },
+      invalidatesTags:[TagTypes.travel]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTravelRequestsByUserQuery, useGetAllTravelBuddyRequestsQuery } = travelApi
+export const { useGetTravelRequestsByUserQuery, useGetAllTravelBuddyRequestsQuery,useSendTravelBuddyRequestMutation,useGetReceiveTravelBuddyRequestsByUserQuery,useResponseToBuddyRequestMutation} = travelApi

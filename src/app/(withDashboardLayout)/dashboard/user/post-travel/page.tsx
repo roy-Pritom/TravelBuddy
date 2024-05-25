@@ -5,7 +5,7 @@ import TravelPostModal from "./components/TravelPostModal";
 import { useGetTripByUserQuery } from "@/redux/api/user/tripApi";
 import EditIcon  from '@mui/icons-material/Edit';
 import {DataGrid,GridColDef} from '@mui/x-data-grid';
-import Image from "next/image";
+import Loader from "@/components/shared/Loader/Loader";
 
 const TravelPostPage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -37,18 +37,7 @@ const columns:GridColDef[]=[
     headerName:'endDate',
     flex:1
   },
-  // {
-  //   field:"file",
-  //   headerName:'Photo',
-  //   flex:1,
-  //   renderCell:({row})=>{
-  //     return (
-  //         <Box>
-  //             <Image src={row.file} width={30} height={30} alt='icon'/>
-  //         </Box>
-  //     )
-  //   }
-  // },
+
   {
     field:"action",
     headerName:'Action',
@@ -81,7 +70,7 @@ const columns:GridColDef[]=[
             (
                 <Box mt={2}>
                 <DataGrid
-                rows={trips}
+                rows={trips || []}
                 columns={columns}
                 hideFooter={true}
               
@@ -90,7 +79,7 @@ const columns:GridColDef[]=[
             )
             :
             (
-                <Typography>Loading</Typography>
+               <Loader/>
             )
          }
       </Box>

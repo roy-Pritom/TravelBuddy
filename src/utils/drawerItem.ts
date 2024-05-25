@@ -4,9 +4,9 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HistoryIcon from '@mui/icons-material/History';
-import ReviewsIcon from '@mui/icons-material/Reviews';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import SendIcon from '@mui/icons-material/Send';
 export const drawerItems = (role: UserRole): IDrawerItem[] => {
     const roleMenus: IDrawerItem[] = [];
     // console.log(role);
@@ -49,25 +49,26 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                         icon: PostAddIcon
                     },
                     {
-                        title: "My Travel Request",
+                        title: "Add Buddy",
                         path: `${role}/travel-request`,
-                        icon: RequestPageIcon
+                        icon: SendIcon
                     },
                     {
-                        title: "Profile",
-                        path: `${role}/user-profile`,
-                        icon: AccountCircleIcon
+                        title: "Buddy Requests",
+                        path: `${role}/buddy-request`,
+                        icon: RequestPageIcon
                     },
+                 
                     {
                         title: "Request History",
                         path: `${role}/request-history`,
                         icon: HistoryIcon
                     },
                     {
-                        title: "Reviews",
-                        path: `${role}/reviews`,
-                        icon: ReviewsIcon
-                    },
+                        title: "Profile",
+                        path: `${role}/user-profile`,
+                        icon: AccountCircleIcon
+                    }
                 )
                 break;
 
