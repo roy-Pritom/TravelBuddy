@@ -22,7 +22,7 @@ const drawerWidth = 240;
 
 export default function DashboardDrawer({ children }: { children: React.ReactNode }) {
     const { data: user, isLoading } = useGetUserProfileQuery({});
-    console.log(user);
+    // console.log(user);
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);

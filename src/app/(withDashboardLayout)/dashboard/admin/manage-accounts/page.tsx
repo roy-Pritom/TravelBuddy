@@ -2,13 +2,14 @@
 import { useGetAllUserQuery, useUpdateAccountStatusMutation } from '@/redux/api/user/userApi';
 import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { toast } from 'sonner';
+import EditRoleModal from './components/EditRoleModal';
 const ManageAccountPage = () => {
+  const [open, setOpen] = useState<boolean>(false);
     const { data: users, isLoading } = useGetAllUserQuery({});
     // console.log(users);
     const [userData, setUserData] = useState<any>([]);
@@ -131,9 +132,12 @@ const [updateAccountStatus]=useUpdateAccountStatusMutation();
                                     <button onClick={()=>handleStatus('ACTIVE',row?.id)} className='btn btn-xs'>Active</button>
                                 )
                         }
-                        <IconButton aria-label='delete'>
+                      <Tooltip title="Edit Role">
+                      <IconButton aria-label='edit' onClick={()=>setOpen(true)}>
                             <EditNoteIcon />
                         </IconButton>
+                      </Tooltip>
+                        <EditRoleModal open={open} setOpen={setOpen} id={row?.id}/>
 
                     </Box>
                 )
