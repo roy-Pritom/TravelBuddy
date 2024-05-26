@@ -25,7 +25,7 @@ const TravelPosts = () => {
 
     // console.log(trips);
     return (
-       <div className="">
+       <div className="md:mt-0 mt-5">
         <SearchBar setSearchTerm={setSearchTerm} selectedStartDate={selectedStartDate} setSelectedStartDate={setSelectedStartDate}
         selectedEndDate={selectedEndDate}
         setSelectedEndDate={setSelectedEndDate}
@@ -40,18 +40,18 @@ const TravelPosts = () => {
             (
                 <div className="md:mt-10 mt-5" id="trips">
                     <h3 className="lg:text-4xl  text-2xl font-bold text-[#29CD9C] text-center mb-4">Trips</h3>
-                    <p className="text-center mb-10 w-[55%] mx-auto text-[#2F4F4F]">Embark on a once-in-a-lifetime world tour, where you will traverse continents and experience the unique cultures, landscapes, and cuisines of iconic cities from Paris to Tokyo. </p>
-         <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 md:gap-5">
+                    <p className="text-center mb-10 md:w-[55%] w-full mx-auto text-[#2F4F4F]">Embark on a once-in-a-lifetime world tour, where you will traverse continents and experience the unique cultures, landscapes, and cuisines of iconic cities from Paris to Tokyo. </p>
+         <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 md:gap-5 md:p-0 gap-5 ">
          {
             searchTerm === '' && selectedStartDate === null &&selectedEndDate===null ?
             (
                 trips?.slice(0,6)?.map((trip: any) =><div
                 key={trip?.id}
-                className="max-w-2xl">
+                className="h-[470px]">
     
-                <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[400px]">
+                <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[470px]">
                  
-                        <Image className="rounded-t-lg w-full h-[200px] " src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="trip-photo"  width={300} height={200}/>
+                        <Image className="rounded-t-lg w-full h-[200px] " src={trip?.file ? trip?.file : "https://flowbite.com/docs/images/blog/image-1.jpg" } alt="trip-photo"  width={300} height={200}/>
                     
                     <div className="p-5">
                       <p className="font-bold text-base text-white">Destination: <span className="text-base font-normal">{trip?.destination}</span></p>
@@ -72,11 +72,11 @@ const TravelPosts = () => {
             (
                 trips?.map((trip: any) =><div
                 key={trip?.id}
-                className="max-w-2xl">
+                className="h-[470px]">
     
-                <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[400px]">
+                <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[470px]">
                  
-                <Image className="rounded-t-lg w-full h-[200px] " src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="trip-photo"  width={300} height={200}/>
+                <Image className="rounded-t-lg w-full h-[200px] " src={trip?.file ? trip?.file : "https://flowbite.com/docs/images/blog/image-1.jpg" } alt="trip-photo"  width={300} height={200}/>
                     
                     <div className="p-5">
                       <p className="font-bold text-base text-white">Destination: <span className="text-base font-normal">{trip?.destination}</span></p>

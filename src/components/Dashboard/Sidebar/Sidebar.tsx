@@ -23,13 +23,13 @@ const SideBar = () => {
     return (
         <Box  sx={{backgroundColor:"#FFFFFF",height:"100%"}}>
             <Stack direction="row" justifyContent="center" alignItems="center" gap="5px" sx={{py:1,my:1}} component={Link} href='/'>
-                {/* <Box>
-                    <Image src={assets.svgs.logo} width={40} height={40} alt='logo'/>
-                </Box> */}
                 <Box>
+                   <Stack direction="row" justifyContent="center" alignItems="center" gap={2}>
+                   <Image alt='logo' src='/travel.png' width={40} height={40}/>
                     <Typography variant='h6' component="h6" fontWeight={600}>
-                            Travel YYT
+                            WanderMate
                     </Typography>
+                   </Stack>
                 </Box>
             </Stack>
             <List>

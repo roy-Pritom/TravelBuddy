@@ -8,8 +8,8 @@ import WhyJoin from "@/components/UI/Home/WhyJoin";
 export default function HomePage() {
   return (
   <div className="">
-  <div className="mx-20">
-  <Banner/>
+  <div className="lg:mx-20 md:mx-10 mx-4">
+    <Banner/>
     <TravelPosts/>
     <LatestNews/>
     <WhyJoin/>

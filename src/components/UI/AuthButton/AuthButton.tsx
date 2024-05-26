@@ -24,7 +24,7 @@ const AuthButton = () => {
             user?.id ?
                 (
                     <>
-                        <Link href='/login'>
+            <Link href={`${user?.role === 'admin' ? 'dashboard/admin/admin-profile' :'/dashboard/user/user-profile'}`}>
                             <Tooltip title={user?.email}>
                                 <Avatar sx={{ mr: 2 }} />
 

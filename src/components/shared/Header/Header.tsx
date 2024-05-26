@@ -20,7 +20,7 @@ const Header = () => {
         }
     </>
     return (
-        <div className="md:mx-14 mx-2 flex justify-center items-center">
+        <div className="md:mx-14 mx-0 flex justify-center items-center">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -31,10 +31,10 @@ const Header = () => {
                             {NavBarItems}
                         </ul>
                     </div>
-                   <div className="flex justify-center items-center">
+                   <div className="flex justify-center items-center md:ml-0 ml-2">
                    <Image alt="logo" src='/travel.png' width={40} height={40}/>
                   <Link href='/'>
-                  <p className="btn btn-ghost md:text-2xl text-xl font-bold">WanderMate</p>
+                  <p className="btn btn-ghost md:text-2xl text-lg font-bold">WanderMate</p>
                   </Link>
                    </div>
                 </div>

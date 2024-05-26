@@ -72,7 +72,7 @@ export default function DashboardDrawer({ children }: { children: React.ReactNod
                             Hi, {isLoading ? "Loading..." : user?.user?.name}
                         </Typography>
                         <Typography variant="body1" noWrap component="div" color="primary.main">
-                            Welcome To, Travel!
+                            Welcome To, WanderMate
                         </Typography>
                      </Box>
                     <Stack direction="row" gap={3}>

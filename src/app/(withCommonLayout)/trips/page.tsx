@@ -16,9 +16,9 @@ const TripsPage =  () => {
   const {data:trips,isLoading}=useGetAllTripsQuery({...query});
 //   console.log(trips);
     return (
-        <div>
-            <div className="my-6 flex justify-between py-5 px-12 items-center">
-        <h3 className="lg:text-4xl  text-2xl font-bold text-[#29CD9C]">All Trips</h3>
+        <div className="">
+            <div className="my-6 flex md:flex-row flex-col  md:justify-between   py-5 px-12 items-start md:gap-0 gap-4 ">
+        <h3 className="lg:text-4xl  text-xl font-bold text-[#29CD9C]">All Trips</h3>
                 <label className="input input-bordered focus:outline-none flex items-center gap-2">
                     <input type="text" onChange={(e)=>setSearchTerm(e.target.value)} className="grow focus:outline-none" placeholder="Search" />
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
@@ -32,15 +32,15 @@ const TripsPage =  () => {
                 )
                 :
                 (
-                    <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 md:gap-5">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 gap-5  lg:max-w-7xl md:mx-auto ">
                 {
                     trips?.map((trip: any) => <div
                         key={trip?.id}
-                        className="max-w-2xl mx-auto">
+                        className="max-w-2xl mx-auto h-[450px]">
 
-                        <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+                        <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[450px]">
 
-                        <Image className="rounded-t-lg w-full " src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="trip-photo"  width={300} height={200}/>
+                        <Image className="rounded-t-lg w-full h-[200px]" src={trip?.file ? trip?.file : 'https://flowbite.com/docs/images/blog/image-1.jpg'} alt="trip-photo"  width={300} height={200}/>
 
                             <div className="p-5">
                                 <p className="font-bold text-base text-white">Destination: <span className="text-base font-normal">{trip?.destination}</span></p>
