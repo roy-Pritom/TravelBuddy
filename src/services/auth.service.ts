@@ -19,3 +19,10 @@ export const getUserInfo=()=>{
 export const removeUserInfo=()=>{
  return removeFromLocalStorage(AuthKey)
 }
+
+export const isUserLoggedIn=()=>{
+const token=getFromLocalStorage(AuthKey);
+if(token){
+  return !!token;
+}
+}

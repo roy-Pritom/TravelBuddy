@@ -54,9 +54,19 @@ export const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags:[TagTypes.user]
     }),
+    changePassword: builder.mutation({
+      query: (payload) => {
+        return {
+           url:'/change-password',
+           method:"POST",
+           data:payload
+        }
+      },
+      invalidatesTags:[TagTypes.user]
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUserProfileQuery,useGetAllUserQuery,useUpdateUserProfileMutation,useUpdateAccountStatusMutation,useUpdateUserRoleMutation} = userApi
+export const { useGetUserProfileQuery,useGetAllUserQuery,useUpdateUserProfileMutation,useUpdateAccountStatusMutation,useUpdateUserRoleMutation,useChangePasswordMutation} = userApi

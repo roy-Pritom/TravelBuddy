@@ -6,6 +6,7 @@ import Image from "next/image";
 import LockResetIcon from '@mui/icons-material/LockReset';
 import { useState } from "react";
 import EditProfileModal from "../../user/user-profile/components/EditProfileModal";
+import Link from "next/link";
 
 
 const AdminProfile = () => {
@@ -51,10 +52,12 @@ const AdminProfile = () => {
                             </div>
                             <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                 <div className="py-6 px-3 mt-32 sm:mt-0">
-                                    <button className="btn ">
+                             <Link href='/dashboard/change-password'>
+                                  <button className="btn ">
                                     <LockResetIcon/>
                                         Change Password
                                     </button>
+                                  </Link>
                                 </div>
                             </div>
                             <div className="w-full lg:w-4/12 px-4 lg:order-1">

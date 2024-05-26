@@ -7,8 +7,19 @@ import { Trip } from "@/types/travel/travelType";
 import Link from "next/link";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { formattedDate } from "@/utils/dateFormatter";
+import { useEffect } from "react";
 
 const UserPage = () => {
+    useEffect(() => {
+        const lastVisit = sessionStorage.getItem('lastVisit');
+        const currentTime = new Date().getTime();
+
+        // If last visit is not recorded or it was more than 5 seconds ago, refresh the page
+        if (!lastVisit || currentTime - parseInt(lastVisit, 10) > 5000) {
+            sessionStorage.setItem('lastVisit', currentTime.toString());
+            window.location.reload();
+        }
+    }, []);
     const { data: user, isLoading } = useGetUserProfileQuery({});
     //   console.log(user);
     const { data: taskData } = useGetTravelRequestsByUserQuery({});
