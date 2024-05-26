@@ -3,6 +3,7 @@ import Loader from "@/components/shared/Loader/Loader";
 import { useGetAllTripsQuery } from "@/redux/api/user/tripApi";
 import { useDebounced } from "@/redux/hooks";
 import { formattedDate } from "@/utils/dateFormatter";
+import Image from "next/image";
 import { useState } from "react";
 
 const TripsPage =  () => {
@@ -39,7 +40,7 @@ const TripsPage =  () => {
 
                         <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
 
-                            <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+                        <Image className="rounded-t-lg w-full " src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="trip-photo"  width={300} height={200}/>
 
                             <div className="p-5">
                                 <p className="font-bold text-base text-white">Destination: <span className="text-base font-normal">{trip?.destination}</span></p>

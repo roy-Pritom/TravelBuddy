@@ -2,15 +2,22 @@
 import Loader from "@/components/shared/Loader/Loader";
 import { useSendTravelBuddyRequestMutation } from "@/redux/api/user/travelApi";
 import { useGetAllTripsQuery } from "@/redux/api/user/tripApi";
+import { useDebounced } from "@/redux/hooks";
 import { formattedDate } from "@/utils/dateFormatter";
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const TravelRequestPage = () => {
   const [tripData, setTripData] = useState<any>([]);
-  const { data: trips, isLoading } = useGetAllTripsQuery({})
+  const [searchTerm,setSearchTerm]=useState<string>('')
+  const query:Record<string,any>={};
+  const debounced=useDebounced({searchTerm:searchTerm,delay:500});
+  if(!!debounced){
+    query['searchTerm']=searchTerm;
+  }
+  const { data: trips, isLoading } = useGetAllTripsQuery({...query})
   // console.log(trips);
   const [sendTravelBuddyRequest] = useSendTravelBuddyRequestMutation();
   useEffect(() => {
@@ -110,8 +117,11 @@ const TravelRequestPage = () => {
   ]
 
   return (
-    <div>
-      <h1 className="text-lg font-bold">Send Travel Buddy Request</h1>
+    <Box>
+     <Stack direction="row" justifyContent="space-between" alignItems="center">
+     <h1 className="md:text-lg text-base font-bold">Send Travel Buddy Request</h1>
+      <TextField onChange={(e)=>setSearchTerm(e.target.value)} size="small" label="search destination"/>
+     </Stack>
       {
         isLoading ?
           (
@@ -130,7 +140,7 @@ const TravelRequestPage = () => {
 
           )
       }
-    </div>
+    </Box>
   );
 };
 

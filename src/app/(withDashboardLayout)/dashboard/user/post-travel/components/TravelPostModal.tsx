@@ -5,11 +5,11 @@ import MYInput from "@/components/Forms/MYInput";
 import MyForm from "@/components/Forms/MyForm";
 import MySelectField from "@/components/Forms/MySelectField";
 import TravelDatePicker from "@/components/Forms/TravelDatePicker";
+import MYFullScreenModal from "@/components/Modals/MYFullScreenModal";
 import MYModal from "@/components/Modals/MYModal";
 import { TravelType } from "@/constants";
 import { useCreateTripMutation } from "@/redux/api/user/tripApi";
 import { dateFormatter } from "@/utils/dateFormatter";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
@@ -62,40 +62,42 @@ const TravelPostModal = ({ open, setOpen }: TProps) => {
       }
    }
    return (
-      <MYModal open={open} setOpen={setOpen} title="Post a Travel/Trip" >
+      <MYFullScreenModal open={open} setOpen={setOpen} title="Post a Travel/Trip" >
          <MyForm onSubmit={handleSubmit}  >
-            <Grid container spacing={2} sx={{ width: '400px' }}>
-               <Grid item md={6}>
-                  <MYInput name="destination" label="Destination" />
+            <Grid container spacing={2} >
+               <Grid item md={4} sm={12} xs={12}>
+                  <MYInput name="destination" label="Destination" fullWidth={true} required={true}/>
                </Grid>
-               <Grid item md={6} sx={{ width: "100%" }}>
-                  <MYInput name="description" label="Detailed description" />
+            
+               <Grid item md={4} sm={12} xs={12}>
+                  <TravelDatePicker name="startDate" label="StartDate" fullWidth={true} required={true}/>
                </Grid>
-               <Grid item md={6}>
-                  <TravelDatePicker name="startDate" label="StartDate" />
+               <Grid item md={4} sm={12} xs={12}>
+                  <TravelDatePicker name="endDate" label="EndDate" fullWidth={true} required={true}/>
                </Grid>
-               <Grid item md={6}>
-                  <TravelDatePicker name="endDate" label="EndDate" />
+               <Grid item md={12} sm={12} xs={12} >
+                  <MYInput name="description" label="Detailed description" fullWidth={true} required={true}/>
                </Grid>
-               <Grid item md={6}>
+               <Grid item md={6} sm={12} xs={12}>
                   <MySelectField name="travelType" label="Travel type"
                      items={TravelType}
                      fullWidth={true}
+                     required={true}
                   />
                </Grid>
-               <Grid item md={6}>
-                  <MYInput name="budget" label="Budget" type="number" />
+               <Grid item md={6} sm={12} xs={12}>
+                  <MYInput name="budget" label="Budget" type="number"  fullWidth={true}
+                  required={true}/>
                </Grid>
-               <Grid item md={6}>
-                  <MYInput name="activities" label="Activities" />
-               </Grid>
-               <Grid item md={6}>
-                  <MYFileUploader name="file" label="Upload Photo" sx={{ width: "100%" }} />
+               <Grid item md={6} sm={12} xs={12}>
+                  <MYFileUploader name="file" label="Upload Photo" sx={{ width: "100%" }} 
+                  required={true}
+                  />
                </Grid>
             </Grid>
             <Button type="submit">Post</Button>
          </MyForm>
-      </MYModal>
+      </MYFullScreenModal>
    );
 };
 

@@ -12,7 +12,7 @@ export const TYpeAnimation = () => {
     // const handleDone = () => {
     //     console.log(`Done after 5 loops!`)
     // }
-
+    // Embark on unforgettable journeys with our curated collection of travel experiences.
     return (
         <div className='App'>
             <h1 className="md:text-6xl text-3xl font-[800] text-black">
@@ -21,7 +21,7 @@ export const TYpeAnimation = () => {
                 <span className="md:text-6xl text-3xl font-[800]  text-[#29CD9C]">
                     {/* Style will be inherited from the parent element */}
                     <Typewriter
-                        words={[`Earning Partner`, 'Earning Hope', 'Earning Way',]}
+                        words={['adventure buddy',`trusted companion`, 'travel sidekick',]}
                         loop={Infinity}
                         cursor
                         cursorStyle='|'

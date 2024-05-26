@@ -179,7 +179,9 @@ const AdminPage = () => {
                                                                     className="px-6 py-4 whitespace-no-wrap text-sm leading-5">
                                                                     <div className="avatar">
   <div className="w-[70px] rounded-full">
-    <Image alt="profile" width={70} height={96} src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+    <Image alt="profile" width={70}
+     height={96}
+      src={userProfile?.profilePhoto ? userProfile?.profilePhoto : 'https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png'} />
   </div>
 </div>
                                             

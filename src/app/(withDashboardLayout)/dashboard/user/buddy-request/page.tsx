@@ -136,7 +136,7 @@ const BuddyRequestsPage = () => {
       ]
     return (
         <div>
-        <h1 className="text-lg font-bold">Send Travel Buddy Request</h1>
+        <h1 className="md:text-lg text-base font-bold">Buddy Requests</h1>
         {
           isLoading ?
             (

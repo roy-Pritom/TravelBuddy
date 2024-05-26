@@ -10,14 +10,22 @@ import Swal from 'sweetalert2'
 import { useState } from "react";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ViewTripModal from "./components/ViewTripModal";
+import { useDebounced } from "@/redux/hooks";
 
 const ManageTripsPage = () => {
     const [open,setOpen]=useState<boolean>(false);
     const [tripId,setTripId]=useState<string>('');
-    const { data: trips, isLoading } = useGetAllTripsQuery({});
+    const [searchTerm,setSearchTerm]=useState<string>('')
+    const query:Record<string,any>={};
+    const debounced=useDebounced({searchTerm:searchTerm,delay:500});
+    if(!!debounced){
+      query['searchTerm']=searchTerm;
+    }
+    const { data: trips, isLoading } = useGetAllTripsQuery({...query});
     const [deleteTrip] = useDeleteTripMutation();
 
 
+    
     // delete trip
     const handleDelete = async (id: string) => {
         const result = await Swal.fire({
@@ -171,8 +179,7 @@ const ManageTripsPage = () => {
     return (
         <Box>
             <Stack direction='row' justifyContent="space-between">
-                <Typography variant="h5" component="h5" fontWeight={600}>All Trips</Typography>
-                <TextField size="small" label="search" />
+                <Typography variant="h5" component="h5" fontWeight={600}>All Trips</Typography><TextField size="small" label="search" onChange={(e)=>setSearchTerm(e.target.value)} />
             </Stack>
             {
                 !isLoading ?

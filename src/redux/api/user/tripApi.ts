@@ -27,10 +27,11 @@ export const tripApi = baseApi.injectEndpoints({
       invalidatesTags:[TagTypes.trip]
     }),
     getTripByUser: builder.query({
-      query: () => {
+      query: (args) => {
         return {
            url:"/user/trips",
            method:"GET",
+           params:args
         }
       },
       providesTags:[TagTypes.trip]

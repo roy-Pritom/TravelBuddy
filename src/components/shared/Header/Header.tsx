@@ -1,18 +1,26 @@
 "use client"
+import { getUserInfo } from "@/services/auth.service";
+import { TUser } from "@/types";
 import { Avatar, Container, Tooltip } from "@mui/material";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
+    const user=getUserInfo() as TUser;
     const AuthButton = dynamic(() => import('@/components/UI/AuthButton/AuthButton'), { ssr: false })
     // console.log(user);
     const NavBarItems = <>
         <li><Link href='/'>Home</Link></li>
         <li><Link href='/about'>About Us</Link></li>
-        <li><Link href='/dashboard'>About Us</Link></li>
+        <li><Link href='/trips'>Trips</Link></li>
+        {
+            user?.id &&
+            <li><Link href='/dashboard'>Dashboard</Link></li>
+        }
     </>
     return (
-        <Container>
+        <div className="md:mx-14 mx-2 flex justify-center items-center">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -23,7 +31,12 @@ const Header = () => {
                             {NavBarItems}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost md:text-2xl text-xl font-bold">GigClickers</a>
+                   <div className="flex justify-center items-center">
+                   <Image alt="logo" src='/travel.png' width={40} height={40}/>
+                  <Link href='/'>
+                  <p className="btn btn-ghost md:text-2xl text-xl font-bold">WanderMate</p>
+                  </Link>
+                   </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -33,7 +46,7 @@ const Header = () => {
                 </div>
                <AuthButton/>
             </div>
-        </Container>
+        </div>
     );
 };
 

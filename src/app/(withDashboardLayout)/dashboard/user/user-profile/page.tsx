@@ -87,12 +87,10 @@ const UserProfilePage = () => {
                                     <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
                                     {userProfileData?.location}
                                 </div>
-                                <div className="mb-2 text-blueGray-600 mt-10">
+                                <div className="mb-2 text-blueGray-600 mt-5">
                                     <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Email - {userProfileData?.user?.email}
                                 </div>
-                                <div className="mb-2 text-blueGray-600">
-                                    <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
-                                </div>
+                              
                             </div>
                             <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                                 <div className="flex flex-wrap justify-center">
@@ -100,7 +98,7 @@ const UserProfilePage = () => {
                                         <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
                                             {userProfileData?.bio}
                                         </p>
-                                        {/* <a href="#pablo" className="font-normal text-pink-500">Show more</a> */}
+                                  
                                     </div>
                                 </div>
                             </div>

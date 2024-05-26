@@ -1,3 +1,4 @@
+import AskQuestion from "@/components/UI/Home/AskQuestion";
 import Banner from "@/components/UI/Home/Banner";
 import LatestNews from "@/components/UI/Home/LatestNews";
 import SearchBar from "@/components/UI/Home/SearchBar";
@@ -9,13 +10,12 @@ export default function HomePage() {
   <div className="">
   <div className="mx-20">
   <Banner/>
-  </div>
-    <div className="mx-12">
-      <SearchBar/>
     <TravelPosts/>
     <LatestNews/>
     <WhyJoin/>
-    </div>
+    <AskQuestion/>
+  </div>
+    
   </div>
   )
 }

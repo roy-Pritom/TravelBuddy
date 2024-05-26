@@ -29,6 +29,11 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                     icon: EngineeringIcon
                 },
                 {
+                    title: "Post Trip",
+                    path: `${role}/post-travel`,
+                    icon: PostAddIcon
+                },
+                {
                     title: "Profile",
                     path: `${role}/admin-profile`,
                     icon: AccountCircleIcon
@@ -44,7 +49,7 @@ export const drawerItems = (role: UserRole): IDrawerItem[] => {
                         icon: DashboardIcon
                     },
                     {
-                        title: "Post Travel Trip",
+                        title: "Post Trip",
                         path: `${role}/post-travel`,
                         icon: PostAddIcon
                     },
