@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import LogoutIcon from '@mui/icons-material/Logout';
 import React from "react";
 import { AuthKey } from "@/constants";
+import { removeFromLocalStorage } from "@/utils/localStorage";
 
 const AccountMenuItem = () => {
 
@@ -33,7 +34,7 @@ const AccountMenuItem = () => {
     const handleLogOut=()=>{
      
         setAnchorEl(null);
-        localStorage.removeItem(AuthKey);
+        removeFromLocalStorage(AuthKey);
         router.push('/login')
 
     }
