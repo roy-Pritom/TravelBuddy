@@ -7,6 +7,7 @@ import { useGetTripByIdQuery, useUpdateTripMutation } from "@/redux/api/user/tri
 import { dateFormatter } from "@/utils/dateFormatter";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
