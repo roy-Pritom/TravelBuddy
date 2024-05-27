@@ -8,18 +8,9 @@ import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 import Image from "next/image";
 import Link from "next/link";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { useEffect } from "react";
-const AdminPage = () => {
-    useEffect(() => {
-        const lastVisit = sessionStorage.getItem('lastVisit');
-        const currentTime = new Date().getTime();
 
-        // If last visit is not recorded or it was more than 5 seconds ago, refresh the page
-        if (!lastVisit || currentTime - parseInt(lastVisit, 10) > 5000) {
-            sessionStorage.setItem('lastVisit', currentTime.toString());
-            window.location.reload();
-        }
-    }, []);
+const AdminPage = () => {
+
     const {data:users}=useGetAllUserQuery({});
     const {data:trips}=useGetAllTripsQuery({});
     const {data:requests}=useGetAllTravelBuddyRequestsQuery({});

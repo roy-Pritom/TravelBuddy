@@ -12,8 +12,11 @@ export const getUserInfo=()=>{
     const userData=decodeToken(token) as TUser;
     return {
       ...userData,
-      role:userData?.role.toLowerCase()
+      role:userData?.role?.toLowerCase()
     };
+  }
+  else{
+    return '';
   }
 }
 export const removeUserInfo=()=>{
