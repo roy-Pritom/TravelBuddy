@@ -2,7 +2,7 @@ import { Box, Stack,  Typography } from '@mui/material';
 import List from '@mui/material/List';
 import Image from 'next/image';
 
-import { UserRole } from '@/types';
+import { TUser, UserRole } from '@/types';
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const SideBar = () => {
     const [userRole,setUserRole]=useState("")
 
     useEffect(()=>{
-        const user=getUserInfo();
+        const user=getUserInfo() as TUser;
         const role=user?.role;
         setUserRole(role as string)
     },[])
