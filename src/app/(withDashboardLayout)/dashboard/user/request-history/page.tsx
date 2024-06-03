@@ -1,6 +1,7 @@
 "use client"
 import Loader from "@/components/shared/Loader/Loader";
 import { useGetTravelRequestsByUserQuery } from "@/redux/api/user/travelApi";
+import { getUserInfo } from "@/services/auth.service";
 import { TravelPlan } from "@/types/travel/travelType";
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -8,9 +9,26 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const TravelRequestPage = () => {
+  const userData = getUserInfo();
   const [requestData, setRequestData] = useState<any>([]);
-  const { data, isLoading } = useGetTravelRequestsByUserQuery({});
+  const { data, isLoading,refetch } = useGetTravelRequestsByUserQuery({},{skip:!userData});
   // console.log(data);
+  const [localLoading, setLocalLoading] = useState(true);
+  const [previousUserId, setPreviousUserId] = useState<string | null>(null);
+  useEffect(() => {
+    // Only run the effect if userData is defined and user ID has changed
+    if (userData && userData.id !== previousUserId) {
+      setLocalLoading(true);
+      // console.log('Fetching new user data');
+      refetch().finally(() => {
+        setLocalLoading(false);
+        setPreviousUserId(userData.id);
+      });
+    } else if (!userData) {
+      setLocalLoading(false);
+    }
+  }, [userData, previousUserId, refetch]);
+
 
   useEffect(() => {
     const modifyData = data?.map((item: TravelPlan) => {
@@ -74,7 +92,7 @@ const TravelRequestPage = () => {
     <div>
       <h1 className="font-bold text-2xl my-5">Travel Requests :</h1>
       {
-        isLoading ?
+        isLoading || localLoading ?
           (
             <Loader />
           )

@@ -1,7 +1,7 @@
 "use client"
 
 import { useDeleteTripMutation, useGetAllTripsQuery } from "@/redux/api/user/tripApi";
-import { Box, IconButton, Stack, TextField, Typography } from "@mui/material";
+import { Box, IconButton, Pagination, Stack, TextField, Typography } from "@mui/material";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -13,6 +13,8 @@ import ViewTripModal from "./components/ViewTripModal";
 import { useDebounced } from "@/redux/hooks";
 
 const ManageTripsPage = () => {
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(7);
     const [open,setOpen]=useState<boolean>(false);
     const [tripId,setTripId]=useState<string>('');
     const [searchTerm,setSearchTerm]=useState<string>('')
@@ -21,7 +23,11 @@ const ManageTripsPage = () => {
     if(!!debounced){
       query['searchTerm']=searchTerm;
     }
-    const { data: trips, isLoading } = useGetAllTripsQuery({...query});
+    query['page']=page;
+    query['limit']=limit;
+    const { data, isLoading } = useGetAllTripsQuery({...query});
+    const trips=data?.trips as [];
+    const meta=data?.meta;
     const [deleteTrip] = useDeleteTripMutation();
 
 
@@ -72,20 +78,18 @@ const ManageTripsPage = () => {
         setOpen(true)
     }
 
+    let pageCount:number;
+    if(meta?.total){
+      pageCount=Math.ceil(meta.total / limit)
+    }
+  
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+      setPage(value);
+    };
+
     const columns: GridColDef[] = [
 
-        // {
-        //     field: "profilePhoto",
-        //     headerName: 'Profile Photo',
-        //     flex: 1,
-        //     renderCell: ({ row }) => {
-        //         return (
-        //             <Box>
-        //                 <Avatar alt='userPhoto' src={row.profilePhoto ? row.profilePhoto : 'https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png'} />
-        //             </Box>
-        //         )
-        //     }
-        // },
+     
         {
             field: "destination",
             headerName: 'Destination',
@@ -116,32 +120,6 @@ const ManageTripsPage = () => {
             flex: 1,
 
         },
-        // {
-        //     field: "accountStatus",
-        //     headerName: 'Status',
-        //     flex: 1,
-        //     renderCell: ({ row }) => {
-        //         return (
-        //        <Box>
-        //         {
-        //             row?.accountStatus==='ACTIVE'?
-        //             (
-        //                       <IconButton  aria-label='active' sx={{color:"green"}} >
-        //                       <VerifiedUserIcon/>
-        //                       </IconButton>
-        //             )
-        //             :
-        //             (
-        //                 <IconButton  aria-label='deactivate' sx={{color:"red"}} >
-        //                 <NoAccountsIcon/>
-        //                 </IconButton>
-        //             )
-        //         }
-        //        </Box>
-        //            )
-        //     }
-
-        // },
 
         {
             field: "action",
@@ -188,8 +166,14 @@ const ManageTripsPage = () => {
                             <DataGrid
                                 rows={trips || []}
                                 columns={columns}
-                                hideFooter={true}
-                                getRowId={(row) => row.id}
+                                hideFooterPagination
+                                slots={{
+                                  footer:()=>{
+                                    return <Box sx={{mb:2,display:'flex',justifyContent:"center",alignItems:"center"}}>
+                                         <Pagination count={pageCount} page={page} onChange={handleChange} />
+                                    </Box>
+                                  }
+                                }}
 
                             />
                         </Box>

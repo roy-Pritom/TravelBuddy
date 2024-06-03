@@ -1,6 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import {  TagTypes } from '@/types/tagTypes'
 import { baseApi } from '../baseApe'
+import { TMeta } from '@/types'
 
 
 // Define a service using a base URL and expected endpoints
@@ -16,12 +17,19 @@ export const userApi = baseApi.injectEndpoints({
       providesTags:[TagTypes.user]
     }),
     getAllUser: builder.query({
-      query: () => {
+      query: (args) => {
         return {
            url:"/users",
-           method:"GET"
+           method:"GET",
+           params:args
         }
       },
+      transformResponse:(res,meta:TMeta)=>{
+        return {
+         users:res,
+         meta
+        }
+       },
       providesTags:[TagTypes.user]
     }),
     updateUserProfile: builder.mutation({

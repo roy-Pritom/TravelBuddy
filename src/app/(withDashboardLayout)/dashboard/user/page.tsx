@@ -7,21 +7,44 @@ import { Trip } from "@/types/travel/travelType";
 import Link from "next/link";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { formattedDate } from "@/utils/dateFormatter";
+import { getUserInfo } from "@/services/auth.service";
+import { useEffect, useState } from "react";
 
 
 
 const UserPage = () => {
-    
+    const userData = getUserInfo();
     const { data: user, isLoading } = useGetUserProfileQuery({});
     //   console.log(user);
-    const { data: taskData } = useGetTravelRequestsByUserQuery({});
+    const { data: taskData,refetch:requestRefetch } = useGetTravelRequestsByUserQuery({},{skip:!userData});
     // console.log(taskData);
-    const { data: trips } = useGetTripByUserQuery({});
+    const { data,refetch:refetchTrips } = useGetTripByUserQuery({},{skip:!userData});
+    const trips=data?.trips as [];
     // console.log(trips);
+    const [localLoading, setLocalLoading] = useState(true);
+
+    const [previousUserId, setPreviousUserId] = useState<string | null>(null);
+    useEffect(() => {
+      // Only run the effect if userData is defined and user ID has changed
+      if (userData && userData.id !== previousUserId) {
+        setLocalLoading(true);
+        // console.log('Fetching new user data');
+        refetchTrips().finally(() => {
+          setLocalLoading(false);
+          setPreviousUserId(userData.id);
+        });
+        requestRefetch().finally(() => {
+          setLocalLoading(false);
+          setPreviousUserId(userData.id);
+        });
+      } else if (!userData) {
+        setLocalLoading(false);
+      }
+    }, [userData, previousUserId, refetchTrips,requestRefetch]);
     return (
         <div className="">
             {
-                isLoading ? (
+                isLoading || localLoading ? (
                     <div className="flex justify-center items-center">
                         <span className="loading loading-spinner loading-md"></span>
                     </div>

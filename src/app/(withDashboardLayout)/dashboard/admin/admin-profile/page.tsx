@@ -13,7 +13,9 @@ const AdminProfile = () => {
     const [open, setOpen] = useState<boolean>(false);
     const { data: userProfileData, isLoading } = useGetUserProfileQuery({});
     const { data: taskData } = useGetAllTravelBuddyRequestsQuery({});
-    const { data: trips } = useGetAllTripsQuery({});
+    const { data } = useGetAllTripsQuery({});
+    const trips=data?.trips as [];
+
     return (
         <div className="">
         {
@@ -63,7 +65,7 @@ const AdminProfile = () => {
                             <div className="w-full lg:w-4/12 px-4 lg:order-1">
                                 <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                     <div className="mr-4 p-3 text-center">
-                                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{trips?.length}</span><span className="text-sm text-blueGray-400">Posts</span>
+                                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{trips?.length}</span><span className="text-sm text-blueGray-400">Total trips</span>
                                     </div>
                                     <div className="mr-4 p-3 text-center">
                                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{taskData?.length}</span><span className="text-sm text-blueGray-400">Requests</span>

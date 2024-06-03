@@ -6,11 +6,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import React from "react";
 import { logoutUser } from "@/services/actions/logOutUser";
 import { toast } from "sonner";
+import { getUserInfo } from "@/services/auth.service";
+import { TUser } from "@/types";
 
 const AccountMenuItem = () => {
-
-
-
+    const user=getUserInfo() as TUser;
     const router=useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -30,6 +30,9 @@ const AccountMenuItem = () => {
         setAnchorEl(null);
         // handleMobileMenuClose();
     };
+    const navigateProfile=()=>{
+  router.push(`/dashboard/${user?.role}/${user?.role}-profile`)
+    }
     const handleLogOut=()=>{
      
         setAnchorEl(null);
@@ -92,7 +95,7 @@ const AccountMenuItem = () => {
                 onClick={handleMenuClose}
                 sx={{mt:8}}
             >
-                      <MenuItem onClick={handleMenuClose}>
+                      <MenuItem onClick={navigateProfile}>
                         <Avatar sx={{background:"transparent",color:"primary.main"}}/>
                         Profile
                         </MenuItem>

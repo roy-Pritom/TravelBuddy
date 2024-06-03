@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
     if (accessToken) {
         decode = jwtDecode(accessToken) as TUser;
     }
-    console.log(decode);
+    // console.log(decode);
     const role = decode?.role;
     if (role === 'ADMIN' && pathname.startsWith('/dashboard/admin')) {
         return NextResponse.next();

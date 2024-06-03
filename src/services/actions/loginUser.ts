@@ -1,5 +1,8 @@
 import { FieldValues } from "react-hook-form"
 import setAccessToken from "./setAccessToken";
+import { getUserInfo } from "../auth.service";
+import { TUser } from "@/types";
+import { jwtDecode } from "jwt-decode";
 
 export const loginUser = async (data: FieldValues) => {
     const res = await fetch('http://localhost:4000/api/login', {
@@ -12,8 +15,9 @@ export const loginUser = async (data: FieldValues) => {
     })
     const userData = await res.json();
     if(userData?.data?.accessToken){
+        const decode=jwtDecode(userData?.data?.accessToken) as TUser
         setAccessToken(userData?.data?.accessToken,{
-            redirect:"/dashboard"
+            redirect:`/dashboard/${decode?.role.toLowerCase()}`
         })
     }
     return userData;

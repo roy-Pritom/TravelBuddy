@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
-    // const router=useRouter();
+    const router=useRouter();
 
 
-    // useEffect(()=>{ 
-    //     if(!isUserLoggedIn()){
-    //         return router.push('/login')
-    //     }
-    // },[])
+    useEffect(()=>{ 
+        if(!isUserLoggedIn()){
+            return router.push('/login')
+        }
+    },[])
     return (
         <DashboardDrawer>
             {children}

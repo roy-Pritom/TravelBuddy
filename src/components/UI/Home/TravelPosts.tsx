@@ -21,7 +21,8 @@ const TravelPosts = () => {
     }
     query['startDate']=selectedStartDate ? selectedStartDate.format('YYYY-MM-DD') : undefined;
     query['endDate']=selectedEndDate ? selectedEndDate.format('YYYY-MM-DD') : undefined;
-    const {data:trips,isLoading}=useGetAllTripsQuery({...query})
+    const {data,isLoading}=useGetAllTripsQuery({...query})
+    const trips=data?.trips as [];
 
     // console.log(trips);
     return (

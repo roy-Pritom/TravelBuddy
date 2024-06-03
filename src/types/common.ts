@@ -7,6 +7,11 @@ export type TUser ={
     iat:number;
     exp:number;
 }
+export type TMeta={
+    page:number;
+    limit:number;
+    total:number;
+}
 
 export const USER_ROLE={
  USER:"user",

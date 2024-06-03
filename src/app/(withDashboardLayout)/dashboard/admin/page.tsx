@@ -11,8 +11,10 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 const AdminPage = () => {
 
-    const {data:users}=useGetAllUserQuery({});
-    const {data:trips}=useGetAllTripsQuery({});
+    const {data:usersData}=useGetAllUserQuery({});
+    const users=usersData?.users as [];
+    const {data}=useGetAllTripsQuery({});
+    const trips=data?.trips as [];
     const {data:requests}=useGetAllTravelBuddyRequestsQuery({});
     const {data:deletedTrips}=useGetDeletedTripsQuery({});
     const {data:userProfile}=useGetUserProfileQuery({});

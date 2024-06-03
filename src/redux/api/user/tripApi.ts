@@ -1,6 +1,7 @@
 // Need to use the React-specific entry point to import createApi
 import {  TagTypes } from '@/types/tagTypes'
 import { baseApi } from '../baseApe'
+import { TMeta } from '@/types'
 
 
 // Define a service using a base URL and expected endpoints
@@ -34,6 +35,12 @@ export const tripApi = baseApi.injectEndpoints({
            params:args
         }
       },
+      transformResponse:(res,meta:TMeta)=>{
+        return {
+         trips:res,
+         meta
+        }
+       },
       providesTags:[TagTypes.trip]
     }),
     getAllTrips: builder.query({
@@ -43,6 +50,12 @@ export const tripApi = baseApi.injectEndpoints({
            method:"GET",
            params:args
         }
+      },
+      transformResponse:(res,meta:TMeta)=>{
+       return {
+        trips:res,
+        meta
+       }
       },
       providesTags:[TagTypes.trip]
     }),

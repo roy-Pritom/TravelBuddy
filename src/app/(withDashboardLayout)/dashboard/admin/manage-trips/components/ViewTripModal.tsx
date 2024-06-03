@@ -42,7 +42,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const ViewTripModal = ({ open, setOpen,id}: TProps) => {
 
- const {data:trip,isLoading}=useGetTripByIdQuery(id);trip
+ const {data:trip,isLoading}=useGetTripByIdQuery(id);
 //  console.log(trip);
  const [expanded, setExpanded] = useState(false);
 
@@ -75,8 +75,8 @@ const ViewTripModal = ({ open, setOpen,id}: TProps) => {
                 <CardMedia
                   component="img"
                   height="194"
-                  image="https://t4.ftcdn.net/jpg/01/08/47/29/360_F_108472954_A3Y42CvYf3GLzKKb5CJjVxuoal8TLE9M.jpg"
-                  alt="Paella dish"
+                  image={trip?.file}
+                  alt="tripPhoto"
                 />
                 <CardContent>
                   <Typography fontWeight={600}>Destination : <span>{trip?.destination}</span>
