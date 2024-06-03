@@ -5,16 +5,24 @@ import { useDebounced } from "@/redux/hooks";
 import { formattedDate } from "@/utils/dateFormatter";
 import Image from "next/image";
 import { useState } from "react";
+import Pagination from "./components/Pagination";
 
 const TripsPage =  () => {
     const [searchTerm,setSearchTerm]=useState<string>('')
     const query:Record<string,any>={};
+    const [currentPage,setCurrentPage]=useState(1);
+    const [postPerPage,setPostPerPage]=useState(6);
+
+
     const debounced=useDebounced({searchTerm:searchTerm,delay:500});
     if(!!debounced){
       query['searchTerm']=searchTerm;
     }
   const {data:trips,isLoading}=useGetAllTripsQuery({...query});
 //   console.log(trips);
+const lastPostIndex=currentPage * postPerPage;
+const firstPostIndex=lastPostIndex - postPerPage;
+const currentPosts=trips?.slice(firstPostIndex,lastPostIndex);
     return (
         <div className="">
             <div className="my-6 flex md:flex-row flex-col  md:justify-between   py-5 px-12 items-start md:gap-0 gap-4 ">
@@ -34,7 +42,7 @@ const TripsPage =  () => {
                 (
                     <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 gap-5  lg:max-w-7xl md:mx-auto ">
                 {
-                    trips?.map((trip: any) => <div
+                    currentPosts?.map((trip: any) => <div
                         key={trip?.id}
                         className="max-w-2xl mx-auto h-[450px]">
 
@@ -60,6 +68,14 @@ const TripsPage =  () => {
             </div>
                 )
             }
+          <div className="flex justify-center items-center mt-5">
+          <Pagination
+            totalPosts={trips?.length}
+            postPerPage={postPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            />
+          </div>
 
         </div>
     );

@@ -16,12 +16,21 @@ import SideBar from '../Sidebar/Sidebar';
 import { useGetUserProfileQuery } from '@/redux/api/user/userApi';
 import AccountMenuItem from '../AccountMenuItem/AccountMenuItem';
 import Link from 'next/link';
+import { getUserInfo } from '@/services/auth.service';
 // import AccountMenu from '../AccountMenu/AccountMenu';
 
 const drawerWidth = 240;
 
 export default function DashboardDrawer({ children }: { children: React.ReactNode }) {
-    const { data: user, isLoading } = useGetUserProfileQuery({});
+    const userData=getUserInfo();
+    const { data: user, isLoading,refetch } = useGetUserProfileQuery({},{
+        skip:!userData
+    });
+    React.useEffect(() => {
+        if (userData) {
+          refetch(); // Refetch data when a new userData logs in
+        }
+      }, [userData, refetch]);
     // console.log(user);
 
     const [mobileOpen, setMobileOpen] = React.useState(false);

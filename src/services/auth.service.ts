@@ -1,4 +1,5 @@
 import { AuthKey } from "@/constants"
+import { instance } from "@/helpers/axios/axiosInstance"
 import { TUser } from "@/types"
 import { decodeToken } from "@/utils/jwtDecoder"
 import { getFromLocalStorage, removeFromLocalStorage, setToLocalStorage } from "@/utils/localStorage"
@@ -29,3 +30,12 @@ if(token){
   return !!token;
 }
 }
+
+export const getNewAccessToken = async () => {
+  return await instance({
+     url: 'http://localhost:4000/api/refresh-token',
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     withCredentials: true,
+  });
+};

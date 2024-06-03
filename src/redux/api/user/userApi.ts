@@ -10,7 +10,7 @@ export const userApi = baseApi.injectEndpoints({
       query: () => {
         return {
            url:"/profile",
-           method:"GET"
+           method:"GET",
         }
       },
       providesTags:[TagTypes.user]

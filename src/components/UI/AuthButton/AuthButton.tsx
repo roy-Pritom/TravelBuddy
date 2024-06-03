@@ -1,4 +1,5 @@
-import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import { logoutUser } from "@/services/actions/logOutUser";
+import { getUserInfo} from "@/services/auth.service";
 import { TUser } from "@/types";
 import { Avatar, Tooltip } from "@mui/material";
 import Link from "next/link";
@@ -10,9 +11,8 @@ const AuthButton = () => {
     const user = getUserInfo() as TUser;
     const handleLogout = () => {
         try {
-            removeUserInfo();
+            logoutUser(router)
             toast.success("logout successfully")
-            router.refresh()
         }
         catch (error: any) {
             console.log(error?.message);

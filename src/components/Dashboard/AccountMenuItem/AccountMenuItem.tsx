@@ -1,12 +1,11 @@
 "use client"
-
 import { Avatar, Box, Divider, IconButton, ListItem, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/navigation";
 import LogoutIcon from '@mui/icons-material/Logout';
 import React from "react";
-import { AuthKey } from "@/constants";
-import { removeFromLocalStorage } from "@/utils/localStorage";
+import { logoutUser } from "@/services/actions/logOutUser";
+import { toast } from "sonner";
 
 const AccountMenuItem = () => {
 
@@ -34,8 +33,13 @@ const AccountMenuItem = () => {
     const handleLogOut=()=>{
      
         setAnchorEl(null);
-        removeFromLocalStorage(AuthKey);
-        router.push('/login')
+        try {
+            logoutUser(router)
+            toast.success("logout successfully")
+        }
+        catch (error: any) {
+            console.log(error?.message);
+        }
 
     }
     return (

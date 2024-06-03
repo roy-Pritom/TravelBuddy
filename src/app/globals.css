@@ -8,3 +8,48 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
+
+/* card */
+.div-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  padding: 10px 30px;
+}
+
+.card {
+  width: 350px;
+  height: 500px;
+  perspective: 1000px;
+}
+
+.card div {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 1.2s;
+}
+
+.card:hover .front-card {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .back-card {
+  transform: rotateY(0);
+}
+
+.front-card {
+  border-radius: 40px;
+  background-color: #f7f7fa;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.back-card {
+  border-radius: 40px;
+  background-color: #f7f7fa;
+  transform: rotateY(180deg);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
