@@ -2,7 +2,7 @@
 import { formattedDate } from "@/utils/dateFormatter";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAllTripsQuery } from "@/redux/api/user/tripApi";
 import { useDebounced } from "@/redux/hooks";
 import Loader from "@/components/shared/Loader/Loader";
@@ -12,7 +12,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const TravelPosts = () => {
-    AOS.init();
+    useEffect(() => {
+        AOS.init()
+}, [])
     const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(null); 
     const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null); 
     const [searchTerm,setSearchTerm]=useState<string>('')

@@ -45,6 +45,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-Live link: https://assignment-8-server-gamma.vercel.app
+Live link: https://assignment-9-client-site.vercel.app
 
 code link: https://github.com/roy-Pritom/TravelBuddy

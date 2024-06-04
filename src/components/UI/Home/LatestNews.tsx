@@ -3,8 +3,11 @@ import { FaRegUser, FaCalendarAlt } from "react-icons/fa";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Image from "next/image";
+import { useEffect } from "react";
 const LatestNews = () => {
-    AOS.init();
+    useEffect(() => {
+        AOS.init()
+}, [])
     return (
         <div className="mt-16 ">
         <h1 className="md:text-3xl text-2xl font-bold text-center mb-14 text-[#29CD9C]">Latest News Update</h1>
