@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const TripDetailsPage = async({params}:{params:{tripId:string}}) => {
     const {tripId}=params;
-    const res=await fetch(`${process.env.BACKEND_URL}/get-trip/${tripId}`);
+    const res=await fetch(`https://assignment-8-server-gamma.vercel.app/api/get-trip/${tripId}`);
     const trip=await res.json();
     // console.log(trip);
     return (
