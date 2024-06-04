@@ -8,8 +8,11 @@ import { useDebounced } from "@/redux/hooks";
 import Loader from "@/components/shared/Loader/Loader";
 import { Dayjs } from "dayjs";
 import Image from "next/image";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TravelPosts = () => {
+    AOS.init();
     const [selectedStartDate, setSelectedStartDate] = useState<Dayjs | null>(null); 
     const [selectedEndDate, setSelectedEndDate] = useState<Dayjs | null>(null); 
     const [searchTerm,setSearchTerm]=useState<string>('')
@@ -42,13 +45,14 @@ const TravelPosts = () => {
                 <div className="md:mt-10 mt-5" id="trips">
                     <h3 className="lg:text-4xl  text-2xl font-bold text-[#29CD9C] text-center mb-4">Trips</h3>
                     <p className="text-center mb-10 md:w-[55%] w-full mx-auto text-[#2F4F4F]">Embark on a once-in-a-lifetime world tour, where you will traverse continents and experience the unique cultures, landscapes, and cuisines of iconic cities from Paris to Tokyo. </p>
-         <div className="grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 md:gap-5 md:p-0 gap-5 ">
+         <div className="lg:grid lg:grid-cols-3 flex flex-col justify-center items-center md:gap-5 md:p-0 gap-5  ">
          {
             searchTerm === '' && selectedStartDate === null &&selectedEndDate===null ?
             (
-                trips?.slice(0,6)?.map((trip: any) =><div
+                trips?.slice(0,9)?.map((trip: any) =><div
                 key={trip?.id}
-                className="h-[470px]">
+                className="h-[470px] cursor-pointer hover:transform hover:scale-110 transition duration-300 ease-in-out " data-aos="fade-up"
+                data-aos-duration="3000">
     
                 <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700 h-[470px]">
                  

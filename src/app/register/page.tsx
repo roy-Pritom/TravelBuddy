@@ -67,7 +67,7 @@ const RegisterPage = () => {
                         <div className="w-full xl:w-3/4 lg:w-11/12 flex ">
                             {/* <!-- Col --> */}
                             <div className="w-full h-auto bg-gray-400 dark:bg-gray-800 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
-                                style={{ backgroundImage: " url('https://source.unsplash.com/Mv9hjnEUHR4/600x800')" }}></div>
+                                style={{ backgroundImage: " url('https://img.freepik.com/free-photo/sign-up-form-button-graphic-concept_53876-133556.jpg?t=st=1717490088~exp=1717493688~hmac=9b13c588adbfcb0d1523b6fadc72be3d02b85fcabec41cf78131cb45cffa2fdc&w=996')" }}></div>
                             {/* <!-- Col --> */}
                             <div className="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
                                 <h3 className="py-4 text-2xl text-center text-gray-800 dark:text-black">Create an Account!</h3>

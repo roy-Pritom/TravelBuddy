@@ -33,7 +33,7 @@ if(token){
 
 export const getNewAccessToken = async () => {
   return await instance({
-     url: 'http://localhost:4000/api/refresh-token',
+     url: 'https://assignment-8-server-gamma.vercel.app/api/refresh-token',
      method: 'POST',
      headers: { 'Content-Type': 'application/json' },
      withCredentials: true,

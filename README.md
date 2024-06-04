@@ -1,8 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## WanderMate (Travel buddy website)
+here users can post their trip
+and also send travel buddy request.
+
+To find a travel buddy, sign up on the website, create a profile, and search for other travelers with similar destinations, dates, and interests. You can send request potential travel buddies to discuss and plan your trip.
+
 ## Getting Started
 
-First, run the development server:
+First, run :
+```bash
+npm run install
+```
+Run the development server:
 
 ```bash
 npm run dev
@@ -34,3 +44,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Live link: https://assignment-8-server-gamma.vercel.app
+
+code link: https://github.com/roy-Pritom/TravelBuddy

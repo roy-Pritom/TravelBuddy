@@ -16,7 +16,7 @@ const Header = () => {
         <li><Link href='/trips'>Trips</Link></li>
         {
             user?.id &&
-            <li><Link href='/dashboard'>Dashboard</Link></li>
+            <li><Link href={`/dashboard/${user?.role}`}>Dashboard</Link></li>
         }
     </>
     return (
